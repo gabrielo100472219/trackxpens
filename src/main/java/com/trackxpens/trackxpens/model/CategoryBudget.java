@@ -7,11 +7,11 @@ import org.springframework.data.annotation.Id;
 public class CategoryBudget {
     @Id
     String category;
-    int amountCents;
+    int MaxAmountCents;
 
-    public CategoryBudget(String category, int amountCents) {
+    public CategoryBudget(String category, int MaxAmountCents) {
         this.category = category;
-        this.amountCents = amountCents;
+        this.MaxAmountCents = MaxAmountCents;
     }
 
     public String getCategory() {
@@ -22,11 +22,11 @@ public class CategoryBudget {
         this.category = category;
     }
 
-    public int getAmountCents() {
-        return amountCents;
+    public int getMaxAmountCents() {
+        return MaxAmountCents;
     }
 
-    public void setAmountCents(int amountCents) {
-        this.amountCents = amountCents;
+    public void setMaxAmountCents(int MaxAmountCents) {
+        this.MaxAmountCents = MaxAmountCents;
     }
 }
