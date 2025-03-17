@@ -12,7 +12,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import com.trackxpens.trackxpens.model.CategoryBudget;
-import com.trackxpens.trackxpens.model.Expense;
 
 
 @SpringBootTest

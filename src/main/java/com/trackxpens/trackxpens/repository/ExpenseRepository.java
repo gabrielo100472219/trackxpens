@@ -1,8 +1,9 @@
 package com.trackxpens.trackxpens.repository;
 
-import org.springframework.data.mongodb.repository.MongoRepository;
-import org.springframework.data.mongodb.repository.Query;   
 import java.util.List;
+
+import org.springframework.data.mongodb.repository.MongoRepository;
+import org.springframework.data.mongodb.repository.Query;
 
 import com.trackxpens.trackxpens.model.Expense;
 
