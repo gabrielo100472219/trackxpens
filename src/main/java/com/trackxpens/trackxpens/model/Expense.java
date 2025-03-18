@@ -1,6 +1,7 @@
 package com.trackxpens.trackxpens.model;
 
 import java.time.LocalDate;
+import java.util.UUID;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -14,8 +15,8 @@ public class Expense {
     private LocalDate date;
     private String category;
 
-    public Expense(String id, int amountCents, LocalDate date, String category) {
-        this.id = id;
+    public Expense(int amountCents, LocalDate date, String category) {
+        this.id = UUID.randomUUID().toString();
         this.amountCents = amountCents;
         this.date = date;
         this.category = category;

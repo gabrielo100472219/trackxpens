@@ -6,7 +6,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
@@ -33,10 +32,9 @@ class ExpenseRepositoryTests {
 	void correctFindingByYearMonthSingleExpense() {
         int month = 3;
         int year = 2025;
-        String id = UUID.randomUUID().toString();
-        Expense testExpense = new Expense(id, 40000, LocalDate.of(year, month, 17), "TestCategory");
+        Expense testExpense = new Expense(40000, LocalDate.of(year, month, 17), "TestCategory");
         expenseRepo.save(testExpense);
-        idsInserted.add(id);
+        idsInserted.add(testExpense.getId());
         Expense foundExpense = expenseRepo.findByYearAndMonth(year, month).get(0);
         assertEquals(foundExpense.getId(), testExpense.getId());
         assertEquals(foundExpense.getAmountCents(), testExpense.getAmountCents());
@@ -50,9 +48,9 @@ class ExpenseRepositoryTests {
         int year = 2025;
 
         // Create multiple expenses for the same month and year
-        Expense expense1 = new Expense(UUID.randomUUID().toString(), 40000, LocalDate.of(year, month, 10), "Food");
-        Expense expense2 = new Expense(UUID.randomUUID().toString(), 25000, LocalDate.of(year, month, 15), "Transport");
-        Expense expense3 = new Expense(UUID.randomUUID().toString(), 60000, LocalDate.of(year, month, 22), "Rent");
+        Expense expense1 = new Expense(40000, LocalDate.of(year, month, 10), "Food");
+        Expense expense2 = new Expense(25000, LocalDate.of(year, month, 15), "Transport");
+        Expense expense3 = new Expense(60000, LocalDate.of(year, month, 22), "Rent");
 
         // Save them to the repository
         expenseRepo.saveAll(List.of(expense1, expense2, expense3));
