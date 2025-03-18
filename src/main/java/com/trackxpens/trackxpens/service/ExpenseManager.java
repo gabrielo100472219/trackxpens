@@ -1,5 +1,7 @@
 package com.trackxpens.trackxpens.service;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import com.trackxpens.trackxpens.model.Expense;
@@ -8,6 +10,11 @@ import com.trackxpens.trackxpens.repository.ExpenseRepository;
 @Service
 public class ExpenseManager {
     private ExpenseRepository expenseRepo;
+
+    public List<Expense> findExpensesByYearMonth(int year, int month) {
+        List<Expense> expenses = expenseRepo.findByYearAndMonth(year, month);
+        return expenses;
+    }
 
     public void createExpense(Expense expense) {
         expenseRepo.insert(expense);
