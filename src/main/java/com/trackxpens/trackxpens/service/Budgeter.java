@@ -14,7 +14,12 @@ public class Budgeter {
     }
 
     public void deleteCategory(String name) {
-        categoryBudgetRepo.deleteById(name);
+        Optional<CategoryBudget> optionalCategoryBudget = categoryBudgetRepo.findById(name);
+        if (optionalCategoryBudget.isPresent()) {
+            categoryBudgetRepo.deleteById(name);
+        } else {
+            throw new IllegalArgumentException("Category with name " + name + " does not exist." );
+        }
     }
 
     public void updateCategory(String oldName, String newName) {
@@ -25,8 +30,20 @@ public class Budgeter {
             CategoryBudget categoryBudget = new CategoryBudget(newName, maxAmountCents);
             categoryBudgetRepo.insert(categoryBudget);
         } else {
-            // Handle the case where the category with oldName does not exist
             throw new IllegalArgumentException("Category with name " + oldName + " does not exist.");
         }
     }
+
+    public void updateBudget(String name, int newAmount) {
+        Optional<CategoryBudget> optionalCategoryBudget = categoryBudgetRepo.findById(name);
+        if (optionalCategoryBudget.isPresent()) {
+            CategoryBudget categoryBudget = optionalCategoryBudget.get();
+            categoryBudget.setMaxAmountCents(newAmount);
+            categoryBudgetRepo.save(categoryBudget);
+        } else {
+            throw new IllegalArgumentException("Category with name " + name + " does not exist." );
+        }
+    }
+
+
 }
